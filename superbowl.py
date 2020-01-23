@@ -1,31 +1,79 @@
+#This file will be updated with classes once we get it fully functional.
+
+#this imports the random library into the file.
 import random
-stickpos = 50
-stickpos2 = 50
-distance = stickpos - stickpos
+
+#this creates the stick_position's value to start the game (50 yard line).
+stick_position = 50
+
+#We will use these variables in the future. Not sure how so they may get scratched.
+stick_position2 = 50
+distance = stick_position - stick_position
+
+#this is the clock variable, we will subtract time from the clock after each play.
 clock = 120
-random_num_run = random.randint(10, 20)
+
+#this creates the variable that will hold the random number generated from a passing play.
 random_num_pass = random.randint(0, 10)
+
+#the creates the variable that will hold the random number generated from a running play.
+random_num_run = random.randint(10, 20)
+
+#this is the current down variable.
 current_down = 1
 
+#before the loop starts this lets the player know where they are on the field.
+#it reads the stick_position variable and returns the number into the print statement.
+print("You are at the", stick_position, "Yard Line")
 
-print("You are at the", stickpos, "Yard Line")
-while stickpos < 100:
-    if stickpos <= 0:
+#this while loop starts the game
+# as long as the sitck_position is less than 100 (the opponents end zone) the loop will keep running.
+#____________________________________________________________________________________________________
+while stick_position > 0:
+    print()
+    move_clock = 0
+#this requires a input from the user to choose a play.
+    user_input = int(input("Choose a play. 1.Pass 2.Run: "))
+
+#if the user inputs 1 (pass) the statement will subtract the random number of yards gained from the stick position 
+#getting the user closer to the goal line.
+    if user_input == 1:
+        stick_position -= random_num_pass
+        move_clock = random_num_pass * 2
+        print()
+        print("User passed the football")
+
+#if the user inputs 2 (run) the statement will subtract the random number of yards gained from the stick position 
+#getting the user closer to the goal line.
+    if user_input == 2:
+        stick_position -= random_num_run
+        move_clock = random_num_run * 4
+        print()
+        print("User ran the football")
+
+#____________________________________________________________________________________________________
+#needs and else statement to catch all invalid inputs from the user.
+
+#moves to next down after the play is run.    
+    current_down += 1
+    clock -= move_clock
+
+#keeps printing current down if user hasn't ready the goal line.
+    if stick_position > 0:
+        print("Current Down:", current_down) 
+        print("User gained", )
+        print("User is at the", stick_position, "Yard Line")
+        print("Game Clock:", clock, "Seconds")
+
+    if clock <= 0:
+        print("Time Expired. You Lose.")
+        break
+
+#resets the current down to 0 after running the 4th down play.
+    if current_down == 4:
+        current_down = 0    
+
+#prints touchdown and breaks the loop if the stick_position is over the end zone (0).
+    if stick_position <= 0:
         print("Touchdown, you won!")
         break
-    user_input = int(input("Choose a play. 1. Pass 2. Run: "))
-    if user_input == 1:
-        stickpos -= random_num_pass
-    if user_input == 2:
-        stickpos -= random_num_run
-    # else:
-    #     print("Invalid Input")
-    # if random_num_pass >= 10:
-  
-    if distance >= 10:
-      current_down = 1        
-    current_down += 1
-    if stickpos > 0:
-        print("Current down:", current_down, "| You are at the", stickpos, "Yard Line")
-    if current_down == 4:
-        current_down = 0
