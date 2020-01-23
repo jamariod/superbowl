@@ -66,7 +66,7 @@ while stick_position > 0:
     random_num_pass = random.randint(-5, 10)
     random_num_run = random.randint(10, 20)
 
-#keeps printing current down if user hasn't ready the goal line.
+#keeps printing current down if user hasn't reached the goal line.
     if stick_position > 0:
         print("Current Down:", current_down) 
         print("User is at the", stick_position, "Yard Line")
