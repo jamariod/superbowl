@@ -64,7 +64,7 @@ while stick_position > 0:
     current_down += 1
     clock -= move_clock
     random_num_pass = random.randint(-5, 10)
-    raondom_num_run = random.randint(10, 20)
+    random_num_run = random.randint(10, 20)
 
 #keeps printing current down if user hasn't ready the goal line.
     if stick_position > 0:
