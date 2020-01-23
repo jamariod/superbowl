@@ -33,17 +33,23 @@ while stick_position > 0:
     print()
     move_clock = 0
 #this requires a input from the user to choose a play.
-    user_input = int(input("Choose a play. 1.Pass 2.Run: "))
+    user_input = int(input("Choose a play coach! 1.Pass 2.Run: "))
 
-#if the user inputs 1 (pass) the statement will subtract the random number of yards gained from the stick position 
+#(PASS PLAY) if the user inputs 1 (pass) the statement will subtract the random number of yards gained from the stick position 
 #getting the user closer to the goal line.
     if user_input == 1:
         stick_position -= random_num_pass
         move_clock = random_num_pass * 2
         print()
         print("User passed the football")
+        if random_num_pass > 0:
+            print("Pass complete: User gained", random_num_pass, "yards.")
+        if random_num_pass == 0:
+            print("Incomplete pass.")
+        if random_num_pass < 0:
+            print("User was sacked")
 
-#if the user inputs 2 (run) the statement will subtract the random number of yards gained from the stick position 
+#(RUN PLAY) if the user inputs 2 (run) the statement will subtract the random number of yards gained from the stick position 
 #getting the user closer to the goal line.
     if user_input == 2:
         stick_position -= random_num_run
@@ -57,13 +63,15 @@ while stick_position > 0:
 #moves to next down after the play is run.    
     current_down += 1
     clock -= move_clock
+    random_num_pass = random.randint(-5, 10)
+    raondom_num_run = random.randint(10, 20)
 
 #keeps printing current down if user hasn't ready the goal line.
     if stick_position > 0:
         print("Current Down:", current_down) 
-        print("User gained", )
         print("User is at the", stick_position, "Yard Line")
-        print("Game Clock:", clock, "Seconds")
+        if clock > 0:
+            print("Game Clock:", clock, "Seconds")
 
     if clock <= 0:
         print("Time Expired. You Lose.")
