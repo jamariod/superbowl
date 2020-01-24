@@ -1,25 +1,34 @@
 import random
 line_of_scrim = 50
 distance = line_of_scrim - line_of_scrim
-clock = 60
+clock = 120
 random_num_pass = random.randint(0, 10)
 random_num_run = random.randint(10, 20)
 current_down = 1
 total_yards = 0
+double_pass = 0
+double_run = 0
+double_run_fumble = 0
+
 print("You are at the", line_of_scrim, "Yard Line")
 
 while line_of_scrim > 0:
     print()
     move_clock = 0
 
-    user_input = int(input("Choose a play coach! 1.Pass 2.Run: "))
-    print("*****************************************************")
+    if line_of_scrim > 20:
+        user_input = int(input("Choose a play coach! 1.Pass 2.Run: "))
+        print("*****************************************************")
+
+    if line_of_scrim < 20: 
+        user_input = int(input("Choose a play coach! 1.Pass 2.Run 3.Kick: "))
+        print("*****************************************************")
 
     if user_input == 1:
         line_of_scrim -= random_num_pass
-        move_clock = random_num_pass + 10
+        move_clock = abs(random_num_pass) + 10
 
-        print()
+        print() 
         print("Quarter Back passed the football")
         if random_num_pass > 0:
             print("Pass complete: User gained", random_num_pass, "yards.")
@@ -43,6 +52,17 @@ while line_of_scrim > 0:
             print("and was tackled behind the line")
             print("and loss", abs(random_num_run), "yards.")
 
+    if user_input == 3:
+
+        print()
+        print("Kicker kicked the football")
+        if random_num_kick == 0:
+            print("and scored, You win!")
+            break
+        if random_num_kick == 1:
+            print("and missed, You lose.")
+            break
+
     clock -= move_clock
 
     if user_input == 2:
@@ -50,8 +70,34 @@ while line_of_scrim > 0:
     if user_input == 1:
         total_yards = total_yards + random_num_pass
 
-    random_num_pass = random.randint(-10, 25)
-    random_num_run = random.randint(-2, 15)
+    double_pass += 1
+
+    if double_pass == 2:
+        random.randint(-20, 0)
+        random_num_pass = random.randint(-20, 0)
+        double_pass = 0
+
+    else:
+        random.randint(-10, 2)
+        random_num_pass = random.randint(-10, 25) 
+    
+    double_run_fumble += 1
+    double_run += 1
+    
+    if user_input == 2:
+        if double_run_fumble == 4:
+            print("Fumble, game over.")
+            break
+        
+
+    if double_run == 2:
+        random.randint(-3, 0)
+        random_num_run = random.randint(-3, 0)
+        double_run = 0
+
+    else:
+        random.randint(-2, 10)
+        random_num_run = random.randint(-2, 10) 
 
     current_down += 1
 
