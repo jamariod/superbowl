@@ -1,4 +1,5 @@
 import random
+from import superbowllistbobby*
 line_of_scrim = 50
 distance = line_of_scrim - line_of_scrim
 clock = 120
@@ -9,14 +10,16 @@ total_yards = 0
 double_pass = 0
 double_run = 0
 double_run_fumble = 0
+random_num_kick = random.randint(0, 1)
 
 print("You are at the", line_of_scrim, "Yard Line")
 
 while line_of_scrim > 0:
     print()
     move_clock = 0
-
+    print("*****************************************************")
     if line_of_scrim > 20:
+        print(superbowllistbobby)
         user_input = int(input("Choose a play coach! 1.Pass 2.Run: "))
         print("*****************************************************")
 
@@ -73,13 +76,13 @@ while line_of_scrim > 0:
     double_pass += 1
 
     if double_pass == 2:
-        random.randint(-20, 0)
-        random_num_pass = random.randint(-20, 0)
+        random.randint(-10, 0)
+        random_num_pass = random.randint(-1, 0)
         double_pass = 0
 
     else:
-        random.randint(-10, 2)
-        random_num_pass = random.randint(-10, 25) 
+        random.randint(-5, 2)
+        random_num_pass = random.randint(-1, 25) 
     
     double_run_fumble += 1
     double_run += 1
@@ -112,6 +115,8 @@ while line_of_scrim > 0:
                 print("Current Down:", current_down) 
                 print("Game Clock:", clock, "Seconds")
                 print("User is at the", line_of_scrim, "Yard Line")
+
+
 
     if total_yards >= 10:
         total_yards = 0    
