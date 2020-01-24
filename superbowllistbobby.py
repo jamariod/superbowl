@@ -1,6 +1,10 @@
-Third_down = "Third down, Don't give up now!"
-Fourth_down = "Fourth down, Tom Brady would convert this!"
+First_down = ["First down, let's get this ring!", "First down, we're gonna stand our ground, no, we won't back down", "First down, First Down!!!"]
+Second_down = ["Second down, let's get it done this time", "Second down, I have good feeling about this next play"]
+Third_down = ["Third down, Don't give up now!", "Third down, everybody on the same page"]
+Fourth_down = ["Fourth down, Tom Brady would convert this!", "One last time to shine"]
 Game_over = ["Game over chump!" , "Four chances to get a first down wasn't enough? Go watch the Patriots celebrate" , "Better luck next year!"] 
 Touchdown = ["Somebody besides Eli Manning has finally beat the Patriots!" , "You are a Superbowl Champion" , "Congratulations (input_team), you have won the Superbowl!"]
 Fumble_Lose = ["Butter fingers cost you the game"]
 Fumble_Win = ["You recovered the ball you lucky mothertrucker!"]
+Qb_sack = ["Ya'll are getting me killed, let's do better on this play.", "Which one of ya'll took out an insurance policy on me!?", "That hurt worse than coding bootcamp!!!"]
+Qb_int = ["You just threw the ball and the game away wise guy", "You throw the ball to the other team more than you do your team, Game over."]
