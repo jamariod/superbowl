@@ -39,7 +39,7 @@ while stick_position > 0:
 #getting the user closer to the goal line.
     if user_input == 1:
         stick_position -= random_num_pass
-        move_clock = random_num_pass * 2
+        move_clock = random_num_pass + 10
         print()
         print("User passed the football")
         if random_num_pass > 0:
@@ -52,7 +52,7 @@ while stick_position > 0:
 #(RUN PLAY) if the user inputs 2 (run) the statement will subtract the random number of yards gained from the stick position 
 #getting the user closer to the goal line.
     if user_input == 2:
-        stick_position -= random_num_run
+        stick_position -= abs(random_num_run)
         move_clock = random_num_run * 4
         print()
         print("User ran the football")
