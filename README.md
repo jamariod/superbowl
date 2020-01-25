@@ -14,11 +14,10 @@ Built With
 Python 3.8 
 
 Authors
-Jamario Davis - Game intro storyline developmer
-Bobby Bryant - Play by play dialogue developmer
-Fred Major  - Quarterback dialogue developmer
+Jamario Davis - Game intro storyline developer
+Bobby Bryant - Play by play dialogue developer
+Fred Major  - Quarterback dialogue developer
 Alan Jordan - Action sequence developer
-See also the list of contributors who participated in this project
 
 License
 This project is not licensed.
