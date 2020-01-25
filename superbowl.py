@@ -1,6 +1,11 @@
 import random
 import function_lib as function_lib
 import superbowllistbobby as funny
+def normal_play()
+    if line_of_scrim > 25:
+        user_input = int(input("Choose a play coach! 1.Pass 2.Run: "))
+        function_lib.star_line()
+        return 
 line_of_scrim = 50
 distance = line_of_scrim - line_of_scrim
 clock = 120
@@ -113,7 +118,7 @@ while line_of_scrim > 0:
 
     if user_input == 2:
         total_yards = total_yards + random_num_run
-    if user_input == 1:
+    elif user_input == 1:
         total_yards = total_yards + random_num_pass
 
     double_pass += 1
@@ -162,11 +167,11 @@ while line_of_scrim > 0:
                 function_lib.blank_line()
                 if total_yards >= 10:
                     print(funny.first_down[funny_random])
-                if current_down == 2:
+                elif current_down == 2:
                     print(funny.second_down[funny_random])
-                if current_down == 3:
+                elif current_down == 3:
                     print(funny.third_down[funny_random])
-                if current_down == 4:
+                elif current_down == 4:
                     print(funny.fourth_down[funny_random])
                 print(your_team,"are at the", line_of_scrim, "Yard Line")
                 # print("Current Down:", current_down) 
