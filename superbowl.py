@@ -1,11 +1,6 @@
 import random
 import function_lib as function_lib
 import superbowllistbobby as funny
-def normal_play()
-    if line_of_scrim > 25:
-        user_input = int(input("Choose a play coach! 1.Pass 2.Run: "))
-        function_lib.star_line()
-        return 
 line_of_scrim = 50
 distance = line_of_scrim - line_of_scrim
 clock = 120
@@ -49,20 +44,26 @@ function_lib.star_line()
 function_lib.blank_line()
 print(your_team, "are at the", line_of_scrim, "Yard Line")
 
-
+#******(BELOW) WHILE LOOP TO RUN THE GAME (BELOW)******#
 while line_of_scrim > 0:
     function_lib.blank_line()
     move_clock = 0
     function_lib.star_line()
+#******(ABOVE) WHILE LOOP TO RUN THE GAME (ABOVE)******#
 
+#******(BELOW) USER INPUT FOR PLAY CALL (BELOW)******#
     if line_of_scrim > 25:
         user_input = int(input("Choose a play coach! 1.Pass 2.Run: "))
-        function_lib.star_line()
-
-    if line_of_scrim < 25: 
+        function_lib.star_line()        
+#KICK OPTION APPEARS IF LINE OF SCRIMMAGE IS LESS THAT THE 25 YARD LINE
+    if line_of_scrim <= 25: 
         user_input = int(input("Choose a play coach! 1.Pass 2.Run 3.Kick: "))
         function_lib.star_line()
+#******(ABOVE) USER INPUT FOR PLAY CALL (ABOVE)******#
 
+#******(BELOW) CODING THE PLAY IN ACTION (BELOW)******#
+
+#PASS PLAY
     if user_input == 1:
         line_of_scrim -= random_num_pass
         move_clock = abs(random_num_pass) + 10
@@ -71,14 +72,16 @@ while line_of_scrim > 0:
         function_lib.blank_line() 
         print("Quarter Back passed the football")
         if random_num_pass > 0:
-            print("Pass complete:", your_team, "gained", random_num_pass, "yards.")
+            print("Pass complete: for", random_num_pass, "yard(s) at the", line_of_scrim, "yard Line.")
         if random_num_pass == 0:
             print("Incomplete pass.")
         if random_num_pass < 0:
             print("Quarter Back was sacked")
             print("and loss", abs(random_num_pass), "yards.")
             print(funny.qb_sack[funny_random])
+#PASS PLAY
 
+#RUN PLAY
     if user_input == 2:
         line_of_scrim -= random_num_run
         move_clock = random_num_run + 4
@@ -87,21 +90,22 @@ while line_of_scrim > 0:
         function_lib.blank_line()
         print("Running back ran the football")
         if random_num_run > 0:
-            print("and ran for", random_num_run, "yards.")
+            print("and ran for", random_num_run, "yards to the", line_of_scrim, "yard Line.")
         if random_num_run == 0:
             print("No gain.")
         if random_num_run < 0:
             print("and was tackled behind the line")
             print("and loss", abs(random_num_run), "yards.")
- 
+#RUN PLAY
+
+#KICK FIELD GOAL (ONLY AVAILABLE IF USER REACHES 25 YARD LINE)
+#IF USER IS LESS THAN 15 YARD LINE, KICK WILL ALWAYS BE SUCCESSFUL)
     if line_of_scrim < 15:
-        random_num_kick = 1
-    
+        random_num_kick = 1  
+#ELSE KICK SUCESS WILL BE RANDOMIZED 
     elif line_of_scrim > 15:
         random_num_kick = random.randint(0, 1)
- 
     if user_input == 3:
-
         function_lib.blank_line()
         print("Kicker kicked the football")
         if random_num_kick == 0:
@@ -112,84 +116,74 @@ while line_of_scrim > 0:
             print("and missed,", your_team, "lose.")
             function_lib.status(2)
             break
+#KICK FIELD GOAL (ONLY AVAILABLE IF USER REACHES 25 YARD LINE)
+
+#******(ABOVE) CODING THE PLAY IN ACTION (ABOVE)******#
 
     qb_random = random.randint(0, 4)
     clock -= move_clock
 
-    if user_input == 2:
-        total_yards = total_yards + random_num_run
-    elif user_input == 1:
+    if user_input == 1:
         total_yards = total_yards + random_num_pass
-
-    double_pass += 1
+        double_pass += 1
+    elif user_input == 2:
+        total_yards = total_yards + random_num_run
 
     if double_pass == 2:
         # random.randint(-5, 1)
         random_num_pass = random.randint(-5, 1)
         double_pass = 0
-
     else:
         # random.randint(5, 2)
-        random_num_pass = random.randint(5, 25) 
+        random_num_pass = random.randint(-10, 25) 
 
     if user_input == 2:
         double_run_fumble += 1
+        double_run += 1
+ 
+    if user_input == 2 and double_run_fumble == 4:
+        print("Fumble, game over.", your_team, "lose.")
+        function_lib.status(2)
+        break
 
-    double_run += 1
+    if line_of_scrim > 20 and double_run == 3:
+        random_num_run = random.randint(-3, 0)
+        double_run = 0
+
+    else:
+        # random.randint(-2, 10)
+        random_num_run = random.randint(-4, 10) 
     
-    if user_input == 2:
-        if double_run_fumble == 4:
-            print("Fumble, game over.", your_team, "lose.")
-            function_lib.status(2)
-            break
-
-    if line_of_scrim > 20:
-
-        if double_run == 3:
-            # random.randint(-3, 0)
-            random_num_run = random.randint(-3, 0)
-            double_run = 0
-
-        else:
-            # random.randint(-2, 10)
-            random_num_run = random.randint(-2, 10) 
-
     current_down += 1
-
     if total_yards >= 10:
         current_down = 1
 
-    if line_of_scrim >= 0:
-    
-        if clock > 0:
-            if current_down < 5:           
-                function_lib.simple_line()
-                function_lib.blank_line()
-                if total_yards >= 10:
-                    print(funny.first_down[funny_random])
-                elif current_down == 2:
-                    print(funny.second_down[funny_random])
-                elif current_down == 3:
-                    print(funny.third_down[funny_random])
-                elif current_down == 4:
-                    print(funny.fourth_down[funny_random])
-                print(your_team,"are at the", line_of_scrim, "Yard Line")
-                # print("Current Down:", current_down) 
-                print("Game Clock:", clock, "Seconds")
+    if line_of_scrim >= 0 and clock > 0 and current_down < 5:   
+        function_lib.simple_line()
+        function_lib.blank_line()
+        if total_yards >= 10:
+            print(funny.first_down[funny_random])
+        elif current_down == 2:
+            print(funny.second_down[funny_random])
+        elif current_down == 3:
+            print(funny.third_down[funny_random])
+        elif current_down == 4:
+            print(funny.fourth_down[funny_random])
+        print(your_team,"are at the", line_of_scrim, "Yard Line")
+        # print("Current Down:", current_down) 
+        print("Game Clock:", clock, "Seconds")
 
     if total_yards >= 10:
         total_yards = 0    
 
-    if total_yards > 0:
-        if clock >= 0:
-            if current_down < 5:
-                print(your_team, "need", 10 - total_yards, "yards for a first down")
+    if total_yards > 0 and clock >= 0 and current_down < 5 and line_of_scrim > 0:
+        print(your_team, "need", 10 - total_yards, "yards for a first down")
 
-    if total_yards <= 0:
+    if total_yards <= 0 and clock >= 0 and current_down < 5 and line_of_scrim > 0:
         print(your_team, "need", 10 + abs(total_yards), "yards for a first down")
-    
-    function_lib.simple_line()
-    
+ 
+ #******(BELOW) GAME RESULTS (BELOW)******#   
+    function_lib.simple_line()  
     if line_of_scrim <= 0:
         function_lib.blank_line()
         print("Touchdown,", your_team, "win!")
@@ -208,3 +202,4 @@ while line_of_scrim > 0:
         print("No more downs", your_team, "lose.")
         function_lib.status(2)
         break    
+#******(ABOVE) GAME RESULTS (ABOVE)******#
