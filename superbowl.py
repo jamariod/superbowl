@@ -29,7 +29,7 @@ Over the past twenty years the New England Patriots have dominated the NFL
 landscape by participating in 9 Super Bowls and winning six. Every new season 
 teams try to emulate them by getting players to take less money while building 
 a talented roster to have a chance at winning the Super Bowl. This year the {your_team} 
-have succeeded at making the Super Bowl and is 1:00 minute away from dethroning the mighty 
+have succeeded at making the Super Bowl and is 2:00 minutes away from dethroning the mighty 
 New England Patriots and winning a Super Bowl. Down by two points the odds 
 are currently stacked against the {your_team} with the ball at the 50 yard line. 
 You have to drive the ball down field and score to win the game. Should you succeed the {your_team} 
