@@ -1,6 +1,7 @@
 import random
 import function_lib as function_lib
 import superbowllistbobby as funny
+time_out = 1
 line_of_scrim = 50
 distance = line_of_scrim - line_of_scrim
 clock = 120
@@ -52,11 +53,19 @@ while line_of_scrim > 0:
 #******(ABOVE) WHILE LOOP TO RUN THE GAME (ABOVE)******#
 
 #******(BELOW) USER INPUT FOR PLAY CALL (BELOW)******#
-    if line_of_scrim > 25:
+#TIMEOUT AND KICK OPTION
+    if current_down == 4 and clock < 10 and line_of_scrim <= 25 and time_out == 1: 
+        user_input = int(input("Choose a play coach! 1.Pass 2.Run 3.Kick 4.Timeout: "))
+        function_lib.star_line() 
+#TIMEOUT OPTION IF USER IS ON 4TH DOWN OR CLOCK IS UNDER 10 SECONDS
+    elif current_down == 4 and time_out == 1: 
+        user_input = int(input("Choose a play coach! 1.Pass 2.Run 4.Timeout: "))
+        function_lib.star_line() 
+    elif line_of_scrim > 25:
         user_input = int(input("Choose a play coach! 1.Pass 2.Run: "))
         function_lib.star_line()        
 #KICK OPTION APPEARS IF LINE OF SCRIMMAGE IS LESS THAT THE 25 YARD LINE
-    if line_of_scrim <= 25: 
+    elif line_of_scrim <= 25 and current_down < 3: 
         user_input = int(input("Choose a play coach! 1.Pass 2.Run 3.Kick: "))
         function_lib.star_line()
 #******(ABOVE) USER INPUT FOR PLAY CALL (ABOVE)******#
@@ -102,6 +111,7 @@ while line_of_scrim > 0:
 #IF USER IS LESS THAN 15 YARD LINE, KICK WILL ALWAYS BE SUCCESSFUL)
     if line_of_scrim < 15:
         random_num_kick = 1  
+
 #ELSE KICK SUCESS WILL BE RANDOMIZED 
     elif line_of_scrim > 15:
         random_num_kick = random.randint(0, 1)
@@ -111,15 +121,14 @@ while line_of_scrim > 0:
         if random_num_kick == 0:
             print("and scored,", your_team, "win!")
             function_lib.status(1)
-            break
+            break 
         if random_num_kick == 1:
             print("and missed,", your_team, "lose.")
             function_lib.status(2)
             break
+
 #KICK FIELD GOAL (ONLY AVAILABLE IF USER REACHES 25 YARD LINE)
-
 #******(ABOVE) CODING THE PLAY IN ACTION (ABOVE)******#
-
     qb_random = random.randint(0, 4)
     clock -= move_clock
 
@@ -129,14 +138,41 @@ while line_of_scrim > 0:
     elif user_input == 2:
         total_yards = total_yards + random_num_run
 
-    if double_pass == 2:
+#Game getting more difficult as user gets closer to the goal line
+#PASS GETS HARDER
+    if line_of_scrim > 40:
+        random_num_pass = random.randint(8, 15)
+    elif line_of_scrim > 30 and line_of_scrim < 40:
+        random_num_pass = random.randint(1, 10)
+    elif line_of_scrim > 25 and line_of_scrim < 30:
+        random_num_pass = random.randint(-5, 7)
+    elif line_of_scrim > 20 and line_of_scrim < 25:
+        random_num_pass = random.randint(-7, 5)
+    elif line_of_scrim > 16 and line_of_scrim < 20:
+        random_num_pass = random.randint(-10, 1)
+
+#RUN GETS HARDER   
+    elif line_of_scrim > 40:
+        random_num_run = random.randint(4, 8)
+    elif line_of_scrim > 30 and line_of_scrim < 40:
+        random_num_run = random.randint(1, 5)
+    elif line_of_scrim > 25 and line_of_scrim < 30:
+        random_num_run = random.randint(-3, 3)
+    elif line_of_scrim > 20 and line_of_scrim < 25:
+        random_num_run = random.randint(-7, 2)
+    elif line_of_scrim > 16 and line_of_scrim < 20:
+        random_num_run = random.randint(-1, 5)
+
+#Game getting more difficult as user gets closer to the goal line
+    if double_pass == 3:
         # random.randint(-5, 1)
         random_num_pass = random.randint(-5, 1)
         double_pass = 0
-    else:
-        # random.randint(5, 2)
-        random_num_pass = random.randint(-10, 25) 
-
+    # if double_pass == 4:
+    #     print("Interception, game over.", your_team, "lose.")
+    #     function_lib.status(2)
+    #     break
+   
     if user_input == 2:
         double_run_fumble += 1
         double_run += 1
@@ -158,6 +194,15 @@ while line_of_scrim > 0:
     if total_yards >= 10:
         current_down = 1
 
+#TIMEOUT RESTORES A DOWN OR ADDS 10 SECONDS TO THE CLOCK
+    if user_input == 4 and current_down > 3 and time_out > 0 and clock > 5:
+        current_down -= 2
+        time_out -= 1
+    elif user_input == 4 and clock < 5 and time_out > 0 and current_down < 4:
+        clock += 10
+        time_out -= 1
+
+#TIMEOUT RESTORES A DOWN OR ADDS 10 SECONDS TO THE CLOCK
     if line_of_scrim >= 0 and clock > 0 and current_down < 5:   
         function_lib.simple_line()
         function_lib.blank_line()
