@@ -19,7 +19,7 @@ Bobby Bryant - Play by play dialogue developer
 Fred Major  - Quarterback dialogue developer
 Alan Jordan - Action sequence developer
 
-Video demo of Terminal Superbowl
+Video demo of Terminal Superbowl https://www.youtube.com/watch?v=o1KIMSIJsyc&t=11s
 
 License
 This project is not licensed.
